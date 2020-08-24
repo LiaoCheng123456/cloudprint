@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用戶管理</title>
+</head>
+
+<link href="../lib/css/bootstrap.min.css" rel="stylesheet">
+<link href="../css/user.css" rel="stylesheet">
+<script src="../js/jquery-3.1.1.min.js"></script>
+<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+<script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+<link rel="stylesheet" href="../lib/layui/css/layui.css">
+<script src="../lib/js/bootstrap.min.js"></script>
+<script src="../js/cookie.js"></script>
+<script src="../js/user.js"></script>
+<body>
+      <!-- <div class="serach-content">
+        <span class="active">激活总数：0</span>
+        <input type="text" id="keyword">
+        <button id="search">keyword</button>
+      </div> -->
+      <div id="xiugaimim">
+        <div class="layui-form-item" style="margin-top: 20px;">
+            <!-- <label class="layui-form-label">密码框</label> -->
+            <div class="layui-input-inline">
+              <input type="text" id="keyword" id="password" required lay-verify="required" placeholder="请输入关键字" autocomplete="off" class="layui-input" style="width:200px; margin-left: 20px;">
+            </div>
+            <button type="button" class="layui-btn" style="margin-left: 20px;width: 100px;" id="search">搜索</button>
+          </div>
+      </div>
+      <table class="layui-table">
+        <colgroup>
+          <col width="150">
+          <col width="200">
+          <col>
+        </colgroup>
+        <thead>
+          <tr class="">
+                <th>序号</th>
+                <th>用户手机号</th>
+                <th>注册激活时间</th>
+                <th>关联打印机设备数</th>
+                <th>用户终端</th>
+                <th>最后登录时间</th>
+            </tr>
+        </thead>
+        <tbody class="content">
+          <tr>
+            <td>贤心</td>
+            <td>2016-11-29</td>
+            <td>人生就像是一场修行</td>
+          </tr>
+          <tr>
+            <td>许闲心</td>
+            <td>2016-11-28</td>
+            <td>于千万人之中遇见你所遇见的人，于千万年之中，时间的无涯的荒野里…</td>
+          </tr>
+        </tbody>
+      </table>
+</body>
+</html>

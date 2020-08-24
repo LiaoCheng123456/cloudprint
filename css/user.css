@@ -1,0 +1,16 @@
+.serach-content {
+    width: 100%;
+    height: 50px;
+    background-color: rebeccapurple;
+}
+
+serach-content .active {
+    height: 100%;
+    line-height: 50px;
+}
+.showmodifypassword{
+    display: inline;
+}
+.nonemdifypassword {
+    display: none;
+}
