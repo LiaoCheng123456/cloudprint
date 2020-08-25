@@ -44,28 +44,27 @@
 		}
  
   </style>
-	<!--只需要导入js  可以到官网下载对应的版本-->
-    <script src="../js/wangeditor.js" type="text/javascript"></script>
-    <script src="../js/jquery-3.1.1.min.js"></script>
-    <script src="../js/bannercontent.js"></script>
-    <script src="../js/addbanner.js"></script>
-    <script src="../js/cookie.js"></script>
- </head>
- <link href="../css/banner.css" rel="stylesheet">
+  <link rel="stylesheet" href="../lib/layui/css/layui.css">
+<!--只需要导入js  可以到官网下载对应的版本-->
 
+<script src="../js/jquery-3.1.1.min.js"></script>
+<script src="../lib/layer/layer.js"></script>
+<script src="../js/bannercontent.js"></script>
+<script src="../js/addbanner.js"></script>
+<script src="../js/cookie.js"></script>
+<script src="../js/wangeditor.js" type="text/javascript"></script>
+ </head>
 <style>
     .header .content {
-        width: 800px;
-        height: 800px;
-        margin: 0 auto;
-        background-color: antiquewhite;
+        width: 80%;
+        /* margin: 0 auto; */
         position: relative;
     }
     .right {
         float: right;
-        height: 500px;
+        /* height: 500px; */
         width:250px;
-        background-color: aqua;
+        /* background-color: aqua; */
         position: absolute;
         left: 100%;
         bottom: 0%;
@@ -79,7 +78,7 @@
         left: 100%;
     }
     .w-e-text-container{
-        height: 700px !important;/*!important是重点，因为原div是行内样式设置的高度300px*/
+        height: 800px !important;/*!important是重点，因为原div是行内样式设置的高度300px*/
     }
 </style>
 <body>
@@ -95,22 +94,25 @@
             <div class="right">
                     <div id="div4bm" style="float:left;">
                     <!--input[button] 触发 file click事件-->
-                    <input type="button" value="选择文件" id="mybutton" class="mybtn" onclick="Id('file').click();" />
+                    <input type="button" value="选择文件" class="layui-icon" id="mybutton" class="mybtn" onclick="Id('file').click();" />
                     <!--file 隐藏起来 触发onchange事件-->
                     <input type="file" name="file" multiple="multiple" accept="image/png,image/jpg,image/jpeg" id="file" onchange="changeToop();" style="display:none;" />
                     </div>
                     <!--图片展示区域-->
                     <div style="float:left;">
                       <!--设置默认图片-->
-                    <img id="myimg" style="width: 164px; height: 164px;" src="http://sandbox.runjs.cn/uploads/rs/72/huvtowwn/zanwu.png"/>
+                    <img id="myimg" style="width: 164px; height: 164px;" src="../src/tupian.jpg"/>
 
-                    <input type="text" placeholder="请输入标题" id="title">
-
+                    <input type="text" class="layui-input" placeholder="请输入标题" id="title">
+                    <!-- <div class="layui-input-block">
+                        <input type="text" name="title" required id="title"  lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
+                      </div> -->
                     <div>
                         <!-- 预览 -->
-                        <button type="button" class="btn btn-primary" id="viewButton"><i class="fa fa-eye"></i> 预览</button>
-
-                        <button id="btn1">保存</button>
+                        <!-- <button type="button" class="btn btn-primary" id="viewButton"><i class="fa fa-eye"></i> 预览</button> -->
+                        <button type="button" class="layui-btn layui-btn-normal" id="viewButton" style="width: 100px;">阅览</button>
+                        <!-- <button id="btn1">保存</button> -->
+                        <button type="button" class="layui-btn layui-btn-normal" id="btn1" style="width: 100px; float: right;">保存</button>
                     </div>
                     
             </div>
@@ -122,7 +124,7 @@
         </div>
         
     </div>
-    <script>
+    <!-- <script>
         var token = getCookie("token");
         var E = window.wangEditor
         var editor = new E('#wangEditor');
@@ -174,9 +176,13 @@
             
             var obj = document.getElementById("file");
             var files = obj.files;
+            if (files.length == 0) {
+                layer.msg("请选择一张图片作为封面")
+                return;
+            }
             var formData = new FormData();
             formData.append("file", files[0])
-            console.log(files[0]);
+            // console.log(files[0]);
             var fileId = null;
             $.ajax({
                 //请求方式
@@ -249,6 +255,6 @@
                 // alert(result)
             }
             });
-        }</script>
+        }</script> -->
 </body>
 </html>
