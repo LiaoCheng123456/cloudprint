@@ -1,4 +1,4 @@
-$(function(){
+$(function () {
     var token = getCookie('token');
     console.log(token)
     if (token == null || token == "") {
@@ -8,7 +8,7 @@ $(function(){
     // 用户
     $(".badge").html(getCookie('username'));
 
-    $("#loginout").click(function() {
+    $("#loginout").click(function () {
         clearCookie('token');
         event.preventDefault();
         window.location.href = "index.html";

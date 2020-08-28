@@ -1,53 +1,72 @@
 <!doctype html>
 <html lang="en">
- <head>
-  <meta charset="UTF-8">
-  <meta name="Generator" content="EditPlus®">
-  <meta name="Author" content="hjl">
-  <meta name="Keywords" content="">
-  <meta name="Description" content="">
-  <title>wangEditor</title>
-  <!--预览样式-->
-  <style>
-	
-		#previewbox {
-			position: fixed;
-			z-index: 999999999;
-			display: none;
-			top: 0px;
-			bottom: 100px;
-			width: 200px;
-			height: 680px;
-			background: url(../src/20191108165219578.png) no-repeat;
-			margin: 0px 650px;
-			background-size: contain;
-			padding: 100px 25px 116px 25px;
-		}
- 
-		.preview-title{
-			font-size: 15px; font-weight: 700;
-		}
-		.preview-author{
-			color: rgb(96, 127, 166); font-size: 12px;cursor:pointer;
-		}
-		.preview-date{
-			color: rgb(140, 140, 140); font-size: 12px; font-style: normal;
-		}
-		.preview-content{
-			height: 100%; padding-right: 0px;overflow-y: scroll;overflow-x: hidden;
-		}
-		.preview-close{
-			top: 0px; width: 50px; height: 50px; right: -17px; font-size: 30px; font-weight: 700; position: absolute; cursor: pointer;
-		}
-		.preview-content::-webkit-scrollbar{
-			width:2px;
-		}
- 
-  </style>
-	<!--只需要导入js  可以到官网下载对应的版本-->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="Generator" content="EditPlus®">
+    <meta name="Author" content="hjl">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <title>wangEditor</title>
+    <!--预览样式-->
+    <style>
+        #previewbox {
+            position: fixed;
+            z-index: 999999999;
+            display: none;
+            top: 0px;
+            bottom: 100px;
+            width: 200px;
+            height: 680px;
+            background: url(../src/20191108165219578.png) no-repeat;
+            margin: 0px 650px;
+            background-size: contain;
+            padding: 100px 25px 116px 25px;
+        }
+
+        .preview-title {
+            font-size: 15px;
+            font-weight: 700;
+        }
+
+        .preview-author {
+            color: rgb(96, 127, 166);
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        .preview-date {
+            color: rgb(140, 140, 140);
+            font-size: 12px;
+            font-style: normal;
+        }
+
+        .preview-content {
+            height: 100%;
+            padding-right: 0px;
+            overflow-y: scroll;
+            overflow-x: hidden;
+        }
+
+        .preview-close {
+            top: 0px;
+            width: 50px;
+            height: 50px;
+            right: -17px;
+            font-size: 30px;
+            font-weight: 700;
+            position: absolute;
+            cursor: pointer;
+        }
+
+        .preview-content::-webkit-scrollbar {
+            width: 2px;
+        }
+    </style>
+    <!--只需要导入js  可以到官网下载对应的版本-->
     <script src="../js/wangeditor.js" type="text/javascript"></script>
     <script src="../js/jquery-3.1.1.min.js"></script>
- </head>
+</head>
 <style>
     .header .content {
         width: 800px;
@@ -56,40 +75,42 @@
         background-color: antiquewhite;
         position: relative;
     }
+
     .right {
         float: right;
         height: 500px;
-        width:250px;
+        width: 250px;
         background-color: aqua;
         position: absolute;
         left: 100%;
         bottom: 0%;
     }
 </style>
+
 <body>
     <div class="header">
         <div class="content">
             <div id="wangEditor"></div>
 
-<!-- 预览 -->
-<button type="button" class="btn btn-primary" id="viewButton"><i class="fa fa-eye"></i> 预览</button>
+            <!-- 预览 -->
+            <button type="button" class="btn btn-primary" id="viewButton"><i class="fa fa-eye"></i> 预览</button>
 
-<button id="btn1">保存</button>
- 
+            <button id="btn1">保存</button>
 
-                <div id="previewbox">
-                    <div id="previewContent" class="preview-content" style="height:50%"></div>
-                    <div onclick = "previewboxClose()" class="preview-close">X</div>
+
+            <div id="previewbox">
+                <div id="previewContent" class="preview-content" style="height:50%"></div>
+                <div onclick="previewboxClose()" class="preview-close">X</div>
             </div>
         </div>
-        
+
     </div>
 </body>
 <script type="text/javascript">
- 
+
     var E = window.wangEditor
     var editor = new E('#wangEditor');
-	//定义上传图片名
+    //定义上传图片名
     editor.customConfig.uploadFileName = 'file'
     // 配置服务器端地址上传图片地址
 	/** 返回格式
@@ -106,34 +127,35 @@
 		}
 	**/
     editor.customConfig.uploadImgServer = "/upload",
-    editor.customConfig.menus = [
-        'head',
-        'bold',
-        'italic',
-        'underline'
-    ]
+        editor.customConfig.menus = [
+            'head',
+            'bold',
+            'italic',
+            'underline'
+        ]
     editor.create();
- 
-	function previewboxClose(){
+
+    function previewboxClose() {
         $("#previewbox").hide();
         $("#previewContent").html("");
     }
- 
-	$("#viewButton").click(function(){
-		previewboxShow();
-	});
- 
-	function previewboxShow(){
+
+    $("#viewButton").click(function () {
+        previewboxShow();
+    });
+
+    function previewboxShow() {
         //获取输入的文本代码
-		var sHTML = editor.txt.html();
-		//console.log(sHTML);
+        var sHTML = editor.txt.html();
+        //console.log(sHTML);
         $("#previewContent").html(sHTML);
         $("#previewbox").show();
     }
-    
-    $("#btn1").click(function(){
+
+    $("#btn1").click(function () {
         alert(editor.txt.html())
     })
-	
+
 </script>
+
 </html>

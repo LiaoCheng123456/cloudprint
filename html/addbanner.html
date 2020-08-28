@@ -1,107 +1,133 @@
 <!doctype html>
 <html lang="en">
- <head>
-  <meta charset="UTF-8">
-  <meta name="Generator" content="EditPlus®">
-  <meta name="Author" content="hjl">
-  <meta name="Keywords" content="">
-  <meta name="Description" content="">
-  <title>wangEditor</title>
-  <!--预览样式-->
-  <style>
-	
-		#previewbox {
-			position: fixed;
-			z-index: 999999999;
-			display: none;
-			top: 0px;
-			bottom: 100px;
-			width: 200px;
-			height: 680px;
-			background: url(../src/20191108165219578.png) no-repeat;
-			margin: 0px 650px;
-			background-size: contain;
-			padding: 100px 25px 116px 25px;
-		}
- 
-		.preview-title{
-			font-size: 15px; font-weight: 700;
-		}
-		.preview-author{
-			color: rgb(96, 127, 166); font-size: 12px;cursor:pointer;
-		}
-		.preview-date{
-			color: rgb(140, 140, 140); font-size: 12px; font-style: normal;
-		}
-		.preview-content{
-			height: 100%; padding-right: 0px;overflow-y: scroll;overflow-x: hidden;
-		}
-		.preview-close{
-			top: 0px; width: 50px; height: 50px; right: -17px; font-size: 30px; font-weight: 700; position: absolute; cursor: pointer;
-		}
-		.preview-content::-webkit-scrollbar{
-			width:2px;
-		}
- 
-  </style>
-  <link rel="stylesheet" href="../lib/layui/css/layui.css">
-<!--只需要导入js  可以到官网下载对应的版本-->
 
-<script src="../js/jquery-3.1.1.min.js"></script>
-<script src="../lib/layer/layer.js"></script>
-<script src="../js/bannercontent.js"></script>
-<script src="../js/addbanner.js"></script>
-<script src="../js/cookie.js"></script>
-<script src="../js/wangeditor.js" type="text/javascript"></script>
- </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="Generator" content="EditPlus®">
+    <meta name="Author" content="hjl">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <title>wangEditor</title>
+    <!--预览样式-->
+    <style>
+        #previewbox {
+            position: fixed;
+            z-index: 999999999;
+            display: none;
+            top: 0px;
+            bottom: 100px;
+            width: 200px;
+            height: 680px;
+            background: url(../src/20191108165219578.png) no-repeat;
+            margin: 0px 650px;
+            background-size: contain;
+            padding: 100px 25px 116px 25px;
+        }
+
+        .preview-title {
+            font-size: 15px;
+            font-weight: 700;
+        }
+
+        .preview-author {
+            color: rgb(96, 127, 166);
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        .preview-date {
+            color: rgb(140, 140, 140);
+            font-size: 12px;
+            font-style: normal;
+        }
+
+        .preview-content {
+            height: 100%;
+            padding-right: 0px;
+            overflow-y: scroll;
+            overflow-x: hidden;
+        }
+
+        .preview-close {
+            top: 0px;
+            width: 50px;
+            height: 50px;
+            right: -17px;
+            font-size: 30px;
+            font-weight: 700;
+            position: absolute;
+            cursor: pointer;
+        }
+
+        .preview-content::-webkit-scrollbar {
+            width: 2px;
+        }
+    </style>
+    <link rel="stylesheet" href="../lib/layui/css/layui.css">
+    <!--只需要导入js  可以到官网下载对应的版本-->
+
+    <script src="../js/jquery-3.1.1.min.js"></script>
+    <script src="../lib/layer/layer.js"></script>
+    <script src="../js/bannercontent.js"></script>
+    <script src="../js/addbanner.js"></script>
+    <script src="../js/cookie.js"></script>
+    <script src="../js/wangeditor.js" type="text/javascript"></script>
+</head>
 <style>
     .header .content {
         width: 80%;
         /* margin: 0 auto; */
         position: relative;
     }
+
     .right {
         float: right;
         /* height: 500px; */
-        width:250px;
+        width: 250px;
         /* background-color: aqua; */
         position: absolute;
         left: 100%;
         bottom: 0%;
     }
+
     .retur {
         height: 100px;
-        width:250px;
-        background-color:aquamarine;
+        width: 250px;
+        background-color: aquamarine;
         position: absolute;
         top: 20px;
         left: 100%;
     }
-    .w-e-text-container{
-        height: 800px !important;/*!important是重点，因为原div是行内样式设置的高度300px*/
+
+    .w-e-text-container {
+        height: 800px !important;
+        /*!important是重点，因为原div是行内样式设置的高度300px*/
     }
 </style>
+
 <body>
     <div class="header">
         <div class="content">
             <div id="wangEditor"></div>
-                <div id="previewbox">
-                    <div id="previewContent" class="preview-content" style="height:50%"></div>
-                    <div onclick = "previewboxClose()" class="preview-close">X</div>
+            <div id="previewbox">
+                <div id="previewContent" class="preview-content" style="height:50%"></div>
+                <div onclick="previewboxClose()" class="preview-close">X</div>
             </div>
 
             <!-- 上传文件保存数据区域 -->
             <div class="right">
-                    <div id="div4bm" style="float:left;">
+                <div id="div4bm" style="float:left;">
                     <!--input[button] 触发 file click事件-->
-                    <input type="button" value="选择文件" class="layui-icon" id="mybutton" class="mybtn" onclick="Id('file').click();" />
+                    <input type="button" value="选择文件" class="layui-icon" id="mybutton" class="mybtn"
+                        onclick="Id('file').click();" />
                     <!--file 隐藏起来 触发onchange事件-->
-                    <input type="file" name="file" multiple="multiple" accept="image/png,image/jpg,image/jpeg" id="file" onchange="changeToop();" style="display:none;" />
-                    </div>
-                    <!--图片展示区域-->
-                    <div style="float:left;">
-                      <!--设置默认图片-->
-                    <img id="myimg" style="width: 164px; height: 164px;" src="../src/tupian.jpg"/>
+                    <input type="file" name="file" multiple="multiple" accept="image/png,image/jpg,image/jpeg" id="file"
+                        onchange="changeToop();" style="display:none;" />
+                </div>
+                <!--图片展示区域-->
+                <div style="float:left;">
+                    <!--设置默认图片-->
+                    <img id="myimg" style="width: 164px; height: 164px;" src="../src/tupian.jpg" />
 
                     <input type="text" class="layui-input" placeholder="请输入标题" id="title">
                     <!-- <div class="layui-input-block">
@@ -110,21 +136,23 @@
                     <div>
                         <!-- 预览 -->
                         <!-- <button type="button" class="btn btn-primary" id="viewButton"><i class="fa fa-eye"></i> 预览</button> -->
-                        <button type="button" class="layui-btn layui-btn-normal" id="viewButton" style="width: 100px;">阅览</button>
+                        <button type="button" class="layui-btn layui-btn-normal" id="viewButton"
+                            style="width: 100px;">阅览</button>
                         <!-- <button id="btn1">保存</button> -->
-                        <button type="button" class="layui-btn layui-btn-normal" id="btn1" style="width: 100px; float: right;">保存</button>
+                        <button type="button" class="layui-btn layui-btn-normal" id="btn1"
+                            style="width: 100px; float: right;">保存</button>
                     </div>
-                    
-            </div>
 
-            <!-- 返回区域 -->
-            <!-- <div class="retur">
+                </div>
+
+                <!-- 返回区域 -->
+                <!-- <div class="retur">
                 
             </div> -->
+            </div>
+
         </div>
-        
-    </div>
-    <!-- <script>
+        <!-- <script>
         var token = getCookie("token");
         var E = window.wangEditor
         var editor = new E('#wangEditor');
@@ -257,4 +285,5 @@
             });
         }</script> -->
 </body>
+
 </html>

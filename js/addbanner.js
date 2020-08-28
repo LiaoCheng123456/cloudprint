@@ -1,9 +1,9 @@
 
- $(function(){
+$(function () {
     var token = getCookie("token");
     var E = window.wangEditor
     var editor = new E('#wangEditor');
-	//定义上传图片名
+    //定义上传图片名
     editor.customConfig.uploadFileName = 'file'
     // 配置服务器端地址上传图片地址
 	/** 返回格式
@@ -21,27 +21,27 @@
     **/
     editor.customConfig.uploadImgShowBase64 = true
     editor.customConfig.uploadImgServer = "/upload",
-    editor.customConfig.menus = [
-        'head',
-        'bold',
-        'italic',
-        'underline'
-    ]
+        editor.customConfig.menus = [
+            'head',
+            'bold',
+            'italic',
+            'underline'
+        ]
     editor.create();
- 
-	$("#viewButton").click(function(){
-		previewboxShow();
-	});
- 
-	function previewboxShow(){
+
+    $("#viewButton").click(function () {
+        previewboxShow();
+    });
+
+    function previewboxShow() {
         //获取输入的文本代码
-		var sHTML = editor.txt.html();
-		//console.log(sHTML);
+        var sHTML = editor.txt.html();
+        //console.log(sHTML);
         $("#previewContent").html(sHTML);
         $("#previewbox").show();
     }
-    
-    $("#btn1").click(function(){
+
+    $("#btn1").click(function () {
         // 获取文件的内容进行上传
         var obj = document.getElementById("file");
         var files = obj.files;
@@ -66,23 +66,23 @@
         var fileId = null;
         $.ajax({
             //请求方式
-            type : "POST",
+            type: "POST",
             //请求地址
-            url : "http://106.54.213.181:9080/version/upload",
+            url: "http://106.54.213.181:9080/version/upload",
             //数据，json字符串
-            data : formData,
+            data: formData,
             processData: false,
             contentType: false,
             headers: {
                 token: token
             },
             //请求成功
-            success : function(result) {
+            success: function (result) {
                 var obj = eval('(' + result + ')');
-                if(obj['code'] == 200) {
+                if (obj['code'] == 200) {
                     fileId = obj['data']
-                    comfirm(fileId,title,content)
-                } else if(obj['code'] == 401){
+                    comfirm(fileId, title, content)
+                } else if (obj['code'] == 401) {
                     console.log("身份信息失效");
                     window.location.href = "login.html";
                 } else {
@@ -90,37 +90,37 @@
                 }
             },
             //请求失败，包含具体的错误信息
-            error : function(e){
+            error: function (e) {
                 // alert(result)
             }
-            });
-        
+        });
+
     })
 
     // 保存内容
-	function comfirm(id, title, content) {
-            var fileId = id
-            var data = {
-                title: title,
-                fileId: fileId,
-                content: content
-            }
-            $.ajax({
+    function comfirm(id, title, content) {
+        var fileId = id
+        var data = {
+            title: title,
+            fileId: fileId,
+            content: content
+        }
+        $.ajax({
             //请求方式
-            type : "POST",
+            type: "POST",
             //请求的媒体类型
             contentType: "application/json;charset=UTF-8",
             //请求地址
-            url : "http://106.54.213.181:9080/banner/add",
+            url: "http://106.54.213.181:9080/banner/add",
             //数据，json字符串
-            data : JSON.stringify(data),
+            data: JSON.stringify(data),
             headers: {
-                    token: token
+                token: token
             },
             //请求成功
-            success : function(result) {
+            success: function (result) {
                 console.log(result)
-                if(result['code'] == 200) {
+                if (result['code'] == 200) {
                     console.log(result)
                     window.location.href = "appcontentmanager.html";
                 } else {
@@ -128,14 +128,14 @@
                 }
             },
             //请求失败，包含具体的错误信息
-            error : function(e){
+            error: function (e) {
                 // alert(result)
             }
-            });
+        });
     }
- })
+})
 
- function previewboxClose(){
+function previewboxClose() {
     $("#previewbox").hide();
     $("#previewContent").html("");
 }
