@@ -1,4 +1,4 @@
-var host = "http://106.54.213.181:9080";
+var host = "http://print-admin.wzswznkj.com/api";
 $(function () {
     var token = getCookie("token");
     getBannerList();

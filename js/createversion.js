@@ -12,7 +12,7 @@ $(function () {
         //执行实例
         var uploadInst = upload.render({
             elem: '#test1' //绑定元素
-            , url: 'http://106.54.213.181:9080/version/upload' //上传接口
+            , url: 'http://print-admin.wzswznkj.com/api/version/upload' //上传接口
             , accept: 'file'
             , headers: {
                 "token": token
@@ -70,7 +70,7 @@ $(function () {
             //请求的媒体类型
             contentType: "application/json;charset=UTF-8",
             //请求地址
-            url: "http://106.54.213.181:9080/version/add",
+            url: "http://print-admin.wzswznkj.com/api/version/add",
             //数据，json字符串
             data: JSON.stringify(data),
             headers: {
