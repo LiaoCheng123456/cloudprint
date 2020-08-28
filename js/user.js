@@ -1,4 +1,4 @@
-var host = "http://print-admin.wzswznkj.com/api";
+var host = "http://print-api.wzswznkj.com";
 $(function(){
     var token = getCookie("token");
     getUserList();

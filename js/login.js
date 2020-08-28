@@ -1,5 +1,5 @@
 //点击button按钮处理
-var host = "http://print-admin.wzswznkj.com/api";
+var host = "http://print-api.wzswznkj.com";
 $(function () {
 
     /**

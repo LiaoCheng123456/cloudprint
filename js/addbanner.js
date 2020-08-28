@@ -68,7 +68,7 @@ $(function () {
             //请求方式
             type: "POST",
             //请求地址
-            url: "http://print-admin.wzswznkj.com/api/version/upload",
+            url: "http://print-api.wzswznkj.com/version/upload",
             //数据，json字符串
             data: formData,
             processData: false,
@@ -111,7 +111,7 @@ $(function () {
             //请求的媒体类型
             contentType: "application/json;charset=UTF-8",
             //请求地址
-            url: "http://print-admin.wzswznkj.com/api/banner/add",
+            url: "http://print-api.wzswznkj.com/banner/add",
             //数据，json字符串
             data: JSON.stringify(data),
             headers: {
