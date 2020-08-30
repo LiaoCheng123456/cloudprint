@@ -1,13 +1,22 @@
 var host = "http://print-api.wzswznkj.com";
 $(function () {
     var token = getCookie("token");
-    getDeviceList();
-    function getDeviceList(val) {
+    var count = null;
+    getDeviceList(null, 1, 10);
+    function getDeviceList(val, curr, limit) {
         var url = host + "/device/devicelist";
         if (val != null) {
             url = host + "/device/devicelist?keyword=" + val;
         }
+        if (curr != null && limit != null) {
+            if (val == null) {
+                url += "?page=" + curr + "&limit=" + limit
+            } else {
+                url += "&page=" + curr + "&limit=" + limit
+            }
+        }
         $.ajax({
+            async: false,
             //请求方式
             type: "GET",
             //请求的媒体类型
@@ -23,9 +32,9 @@ $(function () {
             success: function (result) {
                 var code = result['code'];
                 var data = result['data'];
+                count = result['count'];
                 if (code == 200) {
                     var html = '';
-                    console.log(data)
                     $.each(data, function (k, v) {
                         var sort = k;
                         sort += 1;
@@ -57,10 +66,56 @@ $(function () {
             }
         });
     }
+    // $.when(myajax).done(function () {
+        layui.use('laypage', function () {
+            var laypage = layui.laypage;
+            laypage.render({
+                elem: 'yema'
+                , count: count //数据总数，从服务端得到
+                , jump: function (obj, first) {
+                    //obj包含了当前分页的所有参数，比如：
+                    console.log(obj.curr); //得到当前页，以便向服务端请求对应页的数据。
+                    console.log(obj.limit); //得到每页显示的条数
+
+                    //首次不执行
+                    if (!first) {
+                        //do something
+                        getDeviceList($("#keyword").val(), obj.curr, obj.limit);
+                    }
+
+                }
+            });
+        });
+
+
+    // });
+
+    function keywordshow() {
+        layui.use('laypage', function () {
+            var laypage = layui.laypage;
+            laypage.render({
+                elem: 'yema'
+                , count: count //数据总数，从服务端得到
+                , jump: function (obj, first) {
+                    //obj包含了当前分页的所有参数，比如：
+                    console.log(obj.curr); //得到当前页，以便向服务端请求对应页的数据。
+                    console.log(obj.limit); //得到每页显示的条数
+
+                    //首次不执行
+                    if (!first) {
+                        //do something
+                        getDeviceList($("#keyword").val(), obj.curr, obj.limit);
+                    }
+
+                }
+            });
+        });
+    }
 
 
     $("#search").click(function () {
         var val = $("#keyword").val();
-        getDeviceList(val);
+        getDeviceList(val, 1, 10);
+        keywordshow();
     })
 })

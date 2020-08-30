@@ -1,13 +1,22 @@
 var host = "http://print-api.wzswznkj.com";
 $(function () {
     var token = getCookie("token");
-    getBannerList();
-    function getBannerList(val) {
+    var count = null;
+    getBannerList(null, 1, 10);
+    function getBannerList(val, curr, limit) {
         var url = host + "/banner/adminlist";
         if (val != null) {
             url = host + "/banner/adminlist?keyword=" + val;
         }
+        if (curr != null && limit != null) {
+            if (val == null) {
+                url += "?page=" + curr + "&limit=" + limit
+            } else {
+                url += "&page=" + curr + "&limit=" + limit
+            }
+        }
         $.ajax({
+            async: false,
             //请求方式
             type: "GET",
             //请求的媒体类型
@@ -23,6 +32,7 @@ $(function () {
             success: function (result) {
                 var code = result['code'];
                 var data = result['data'];
+                count = result['count'];
                 if (code == 200) {
                     var html = '';
                     console.log(data)
@@ -104,6 +114,68 @@ $(function () {
      */
     $(document).on('click', '#delete', function () {
         var bannerId = $(this).attr("data-id");
+        //eg1       
+        layer.confirm('确定是否删除', {
+            btn: ['确定', '取消']
+        }, function (index, layero) {
+            deleteBanner(bannerId)
+            layer.close(index)
+        }, function (index) {
+            //按钮【按钮二】的回调
+            layer.close(index)
+        });
+
+    })
+
+    layui.use('laypage', function () {
+        var laypage = layui.laypage;
+        laypage.render({
+            elem: 'yema'
+            , count: count //数据总数，从服务端得到
+            , jump: function (obj, first) {
+                //obj包含了当前分页的所有参数，比如：
+                console.log(obj.curr); //得到当前页，以便向服务端请求对应页的数据。
+                console.log(obj.limit); //得到每页显示的条数
+
+                //首次不执行
+                if (!first) {
+                    //do something
+                    getBannerList($("#keyword").val(), obj.curr, obj.limit);
+                }
+
+            }
+        });
+    });
+
+    function keywordshow() {
+        layui.use('laypage', function () {
+            var laypage = layui.laypage;
+            laypage.render({
+                elem: 'yema'
+                , count: count //数据总数，从服务端得到
+                , jump: function (obj, first) {
+                    //obj包含了当前分页的所有参数，比如：
+                    console.log(obj.curr); //得到当前页，以便向服务端请求对应页的数据。
+                    console.log(obj.limit); //得到每页显示的条数
+
+                    //首次不执行
+                    if (!first) {
+                        //do something
+                        getBannerList($("#keyword").val(), obj.curr, obj.limit);
+                    }
+
+                }
+            });
+        });
+    }
+
+    $("#search").click(function () {
+        var val = $("#keyword").val();
+        getBannerList(val, 1, 10);
+        keywordshow();
+    })
+
+    function deleteBanner(bannerId) {
         var data = {
             id: bannerId
         }
@@ -137,10 +209,5 @@ $(function () {
                 // alert(result)
             }
         });
-    })
-
-    $("#search").click(function () {
-        var val = $("#keyword").val();
-        getBannerList(val);
-    })
+    }
 })
