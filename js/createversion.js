@@ -51,7 +51,7 @@ $(function () {
             return
         }
 
-        if (filedids == null) {
+        if (type == 1 && filedids == null) {
             layer.msg("请选择一个更新包文件在进行上传")
             return
         }

@@ -36,7 +36,7 @@ $(function () {
                             html += '<tr><td>' + sort + '</td><td>' +
                                 username + '</td><td>' +
                                 jurisdiction + '</td><td><button type="button" data-status = "' + data[k]["status"] + '" data-id = "' + data[k]["id"] + '" class="layui-btn layui-btn-sm layui-btn-disabled" id="stopuser">' + status + '</button>' +
-                                '</td><td><button type="button" data-id = "' + data[k]["id"] + '" class="layui-btn layui-btn-sm layui-btn-disabled" id="modifypassword">修改密码</button></td></tr>'
+                                '</td><td><button type="button" data-id = "' + data[k]["id"] + '" class="layui-btn layui-btn-sm" id="modifypassword">修改密码</button></td></tr>'
                         } else {
                             var sort = k;
                             sort += 1;
@@ -70,9 +70,6 @@ $(function () {
      * 修改密码
      */
     $(document).on('click', '#modifypassword', function () {
-        if ($(this).attr('data-id') == 1) {
-            return;
-        }
         layer.open({
             type: 1,
             content: $('#xiugaimim'), //这里content是一个普通的String
