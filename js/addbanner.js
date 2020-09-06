@@ -49,7 +49,6 @@ $(function () {
         var content = editor.txt.html()
         var title = $("#title").val()
         formData.append("file", files[0])
-        console.log(files[0]);
 
         if (files.length == 0) {
             layer.msg("请选择一张图片作为封面")
@@ -83,7 +82,6 @@ $(function () {
                     fileId = obj['data']
                     comfirm(fileId, title, content)
                 } else if (obj['code'] == 401) {
-                    console.log("身份信息失效");
                     window.location.href = "login.html";
                 } else {
                     console.log(obj)
@@ -119,9 +117,7 @@ $(function () {
             },
             //请求成功
             success: function (result) {
-                console.log(result)
                 if (result['code'] == 200) {
-                    console.log(result)
                     window.location.href = "appcontentmanager.html";
                 } else {
                     console.log(result['msg'])

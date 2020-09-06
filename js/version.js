@@ -7,7 +7,7 @@ $(function(){
         $(this).addClass('layui-this');
                                     // 添加当前元素的样式
                                     
-        getversionlist($(this).val());
+        // getversionlist($(this).val());
     });
 
     $("#createversion").click(function(){
@@ -18,12 +18,18 @@ $(function(){
 
     var token = getCookie("token");
     getversionlist();
-    function getversionlist(val) {
+    function getversionlist(val, type) {
+        console.log(val, type)
         var url = host + "/version/list";
+
+        if (type == null) {
+            type = 1;
+        }
+
         if (val != null) {
-            url = host + "/version/list?targetType=" + val;
+            url = host + "/version/list?targetType=" + val + "&type=" + type;
         } else {
-            url = host + "/version/list?targetType=1";
+            url = host + "/version/list?targetType=1&type=" + type;
         }
         $.ajax({
             //请求方式
@@ -41,7 +47,6 @@ $(function(){
             success : function(result) {
                 var code = result['code'];
                 var data = result['data'];
-                console.log(data)
                 if(code == 200) {
                     var html = '';
                     $.each(data, function(k, v) {
@@ -56,9 +61,7 @@ $(function(){
                         html += '<tr><td>' + sort +'</td><td>' + title +'</td><td>' + content +'</td><td>' + type +'</td><td>' + targetType +'</td><td>' + version +'</td></tr>'
                     })
                     $(".versionContent").html(html);
-                    console.log(html)
                 } else if(code == 401){
-                    console.log("身份信息失效");
                     window.location.href = "login.html";
                 } else {
     
@@ -71,14 +74,31 @@ $(function(){
             });
     }
 
+    var targetType = 1;
+    var type = 1;
+
     $("#jiazhang").click(function(){
-        getversionlist(1);
+        targetType = 1;
+        getversionlist(targetType, type)
         event.preventDefault();
     })
 
     $("#shebei").click(function(){
-        getversionlist(2);
+        targetType = 2;
+        getversionlist(targetType, type)
         event.preventDefault();
     })
-    
+
+
+    $("#android").click(function(){
+        type = 1;
+        getversionlist(targetType, type)
+        event.preventDefault();
+    })
+
+    $("#ios").click(function(){
+        type = 2;
+        getversionlist(targetType, type)
+        event.preventDefault();
+    })
 })

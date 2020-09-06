@@ -43,7 +43,6 @@ function postData() {
     contentType: false,
     processData: false,
     success: function (res) {
-      console.log(res.data);
       if (res.data["code"] == "succ") {
         alert('成功');
       } else if (res.data["code"] == "err") {

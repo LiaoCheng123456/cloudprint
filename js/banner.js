@@ -35,7 +35,6 @@ $(function () {
                 count = result['count'];
                 if (code == 200) {
                     var html = '';
-                    console.log(data)
                     $.each(data, function (k, v) {
                         var sort = k;
                         sort += 1;
@@ -52,9 +51,7 @@ $(function () {
                             '</td></tr>'
                     })
                     $(".bannerContent").html(html);
-                    console.log(html)
                 } else if (code == 401) {
-                    console.log("身份信息失效");
                     window.location.href = "login.html";
                 } else {
 
@@ -95,7 +92,6 @@ $(function () {
                 if (code == 200) {
                     getBannerList();
                 } else if (code == 401) {
-                    console.log("身份信息失效");
                     window.location.href = "login.html";
                 } else {
 
@@ -134,8 +130,6 @@ $(function () {
             , count: count //数据总数，从服务端得到
             , jump: function (obj, first) {
                 //obj包含了当前分页的所有参数，比如：
-                console.log(obj.curr); //得到当前页，以便向服务端请求对应页的数据。
-                console.log(obj.limit); //得到每页显示的条数
 
                 //首次不执行
                 if (!first) {
