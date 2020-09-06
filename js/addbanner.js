@@ -49,7 +49,7 @@ $(function () {
         var obj = document.getElementById("file");
         var files = obj.files;
         var formData = new FormData();
-        var content = editor.txt.html()
+        var content = $("#wangEditor").text();
         var title = $("#title").val()
         formData.append("file", files[0])
 
@@ -61,7 +61,7 @@ $(function () {
             layer.msg("标题不能为空")
             return
         }
-        if (content == '<p><br></p>') {
+        if (content == '<p><br></p>' || content == undefined || content == null || content == '') {
             layer.msg("内容不能为空")
             return
         }
