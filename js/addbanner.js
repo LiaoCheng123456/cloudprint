@@ -35,7 +35,10 @@ $(function () {
 
     function previewboxShow() {
         //获取输入的文本代码
-        var sHTML = editor.txt.html();
+        // var sHTML = editor.txt.html();
+        // var sHTML = editor.txt.text();
+        var sHTML = $("#wangEditor").text();
+        console.log(sHTML);
         //console.log(sHTML);
         $("#previewContent").html(sHTML);
         $("#previewbox").show();

@@ -38,7 +38,7 @@ $(function () {
                     $.each(data, function (k, v) {
                         var sort = k;
                         sort += 1;
-                        var deviceNumber = data[k]['deviceNumber'];
+                        var deviceNumber = data[k]['deviceNumber'] == undefined ? "" : data[k]['deviceNumber'];
                         var addTime = data[k]['addTime'] == undefined ? "" : getLocalTime(data[k]['addTime']);
                         var username = data[k]['username'] == undefined ? 0 : data[k]['username'];
                         var lastLogin = data[k]['lastLogin'] == undefined ? "" : getLocalTime(data[k]['lastLogin']);
@@ -69,6 +69,7 @@ $(function () {
     // $.when(myajax).done(function () {
         layui.use('laypage', function () {
             var laypage = layui.laypage;
+            $(".count").text(count)
             laypage.render({
                 elem: 'yema'
                 , count: count //数据总数，从服务端得到
