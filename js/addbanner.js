@@ -85,7 +85,7 @@ $(function () {
                     fileId = obj['data']
                     comfirm(fileId, title, content)
                 } else if (obj['code'] == 401) {
-                    window.location.href = "login.html";
+                    parent.location.href = "login.html";
                 } else {
                     console.log(obj)
                 }

@@ -62,7 +62,7 @@ $(function(){
                     })
                     $(".versionContent").html(html);
                 } else if(code == 401){
-                    window.location.href = "login.html";
+                    parent.location.href = "login.html";
                 } else {
     
                 }

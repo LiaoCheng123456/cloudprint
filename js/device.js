@@ -55,7 +55,7 @@ $(function () {
                     console.log(html)
                 } else if (code == 401) {
                     console.log("身份信息失效");
-                    window.location.href = "login.html";
+                    parent.location.href = "login.html";
                 } else {
 
                 }
