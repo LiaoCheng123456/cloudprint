@@ -29,7 +29,7 @@ $(function(){
         if (val != null) {
             url = host + "/version/list?targetType=" + val + "&type=" + type;
         } else {
-            url = host + "/version/list?targetType=1&type=" + type;
+            url = host + "/version/list?targetType=2&type=" + type;
         }
         $.ajax({
             //请求方式
