@@ -2,6 +2,7 @@ var host = "http://print-api.wzswznkj.com";
 $(function () {
     var token = getCookie("token");
     var count = null;
+    var thiscurr = null;
     getDeviceList(null, 1, 10);
     function getDeviceList(val, curr, limit) {
         var url = host + "/device/devicelist";
@@ -14,6 +15,7 @@ $(function () {
             } else {
                 url += "&page=" + curr + "&limit=" + limit
             }
+            thiscurr = curr;
         }
         $.ajax({
             async: false,
@@ -167,7 +169,7 @@ $(function () {
             success: function (result) {
                 var code = result['code'];
                 if (code == 200) {
-                    getDeviceList(null, 1, 10);
+                    getDeviceList(null, thiscurr, 10);
                 } else if (code == 401) {
                     console.log("身份信息失效");
                     parent.location.href = "login.html";

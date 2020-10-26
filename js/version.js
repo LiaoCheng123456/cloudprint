@@ -54,7 +54,7 @@ $(function(){
                         sort+=1;
                         var addTime = data[k]['addTime'];
                         var content = data[k]['content'];
-                        var targetType = data[k]['targetType'] == 1 ? "家长端":"设备端";
+                        var targetType = data[k]['targetType'] == 2 ? "家长端":"设备端";
                         var title = data[k]['title'];
                         var type = data[k]['type'] == 1 ? "安卓" : "IOS";
                         var version = data[k]['version'];
@@ -78,13 +78,13 @@ $(function(){
     var type = 1;
 
     $("#jiazhang").click(function(){
-        targetType = 1;
+        targetType = 2;
         getversionlist(targetType, type)
         event.preventDefault();
     })
 
     $("#shebei").click(function(){
-        targetType = 2;
+        targetType = 1;
         getversionlist(targetType, type)
         event.preventDefault();
     })
