@@ -40,7 +40,7 @@ $(function () {
                     $.each(data, function (k, v) {
                         var sort = k;
                         sort += 1;
-                        var deviceNumber = data[k]['deviceNumber'] == undefined ? "" : data[k]['deviceNumber'];
+                        var deviceNumber = data[k]['serialNumber'] == undefined ? "" : data[k]['serialNumber'];
                         var addTime = data[k]['addTime'] == undefined ? "" : getLocalTime(data[k]['addTime']);
                         var username = data[k]['username'] == undefined ? "" : data[k]['username'];
                         var lastLogin = data[k]['lastLogin'] == undefined ? "" : getLocalTime(data[k]['lastLogin']);
