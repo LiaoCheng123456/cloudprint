@@ -45,6 +45,7 @@ $(function () {
                         var username = data[k]['username'] == undefined ? "" : data[k]['username'];
                         var lastLogin = data[k]['lastLogin'] == undefined ? "" : getLocalTime(data[k]['lastLogin']);
                         var status = data[k]['status'] == 1 ? '在线' : '离线';
+                        var isOpen = data[k]['isOpen'] == 1 ? '允许' : '不允许';
 
                         var buttonvalue = "";
                         console.log(data[k]["id"])
@@ -57,7 +58,9 @@ $(function () {
                             addTime + '</td><td>' +
                             username + '</td><td>' +
                             lastLogin + '</td><td>' +
-                            status + '</td><td>'+buttonvalue+'</tr>'
+                            status + '</td><td>'+
+                            isOpen + '</td><td>'+
+                            buttonvalue+'</tr>'
                             
                     })
                     $(".deviceContent").html(html);
