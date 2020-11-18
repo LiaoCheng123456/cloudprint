@@ -1,6 +1,7 @@
 var host = "http://print-api.wzswznkj.com";
 $(function () {
     var token = getCookie("token");
+    var loginName = getCookie("username");
     getAdminList();
     function getAdminList(val) {
         var url = host + "/user/adminlist";
@@ -27,27 +28,37 @@ $(function () {
                     var html = '';
                     console.log(data)
                     $.each(data, function (k, v) {
-                        if (data[k]['username'] == 'admin') {
-                            var sort = k;
-                            sort += 1;
-                            var username = data[k]['username'];
-                            var jurisdiction = data[k]['jurisdiction'] == 1 ? "全部" : "";
-                            var status = data[k]['status'] == 1 ? "点击禁用" : "点击激活";
-                            html += '<tr><td>' + sort + '</td><td>' +
-                                username + '</td><td>' +
-                                jurisdiction + '</td><td><button type="button" data-status = "' + data[k]["status"] + '" data-id = "' + data[k]["id"] + '" class="layui-btn layui-btn-sm layui-btn-disabled" id="stopuser">' + status + '</button>' +
-                                '</td><td><button type="button" data-id = "' + data[k]["id"] + '" class="layui-btn layui-btn-sm" id="modifypassword">修改密码</button></td></tr>'
-                        } else {
-                            var sort = k;
-                            sort += 1;
-                            var username = data[k]['username'];
-                            var jurisdiction = data[k]['jurisdiction'] == 1 ? "全部" : "";
-                            var status = data[k]['status'] == 1 ? "点击禁用" : "点击激活";
-                            html += '<tr><td>' + sort + '</td><td>' +
-                                username + '</td><td>' +
-                                jurisdiction + '</td><td><button type="button" data-status = "' + data[k]["status"] + '" data-id = "' + data[k]["id"] + '" class="btn " id="stopuser">' + status + '</button>' +
-                                '</td><td><button type="button" data-id = "' + data[k]["id"] + '" class="btn btn-danger" id="modifypassword">修改密码</button></td></tr>'
+                        if (loginName == 'admin') {
+                            if (data[k]['username'] == 'admin') {
+                                var sort = k;
+                                sort += 1;
+                                var username = data[k]['username'];
+                                var jurisdiction = data[k]['jurisdiction'] == 1 ? "全部" : "";
+                                var status = data[k]['status'] == 1 ? "点击禁用" : "点击激活";
+                                html += '<tr><td>' + sort + '</td><td>' +
+                                    username + '</td><td>' +
+                                    jurisdiction + '</td><td><button type="button" data-status = "' + data[k]["status"] + '" data-id = "' + data[k]["id"] + '" class="layui-btn layui-btn-sm layui-btn-disabled" id="stopuser">' + status + '</button>' +
+                                    '</td><td><button type="button" data-id = "' + data[k]["id"] + '" class="layui-btn layui-btn-sm" id="modifypassword">修改密码</button></td></tr>'
+                            } else {
+                                var sort = k;
+                                sort += 1;
+                                var username = data[k]['username'];
+                                var jurisdiction = data[k]['jurisdiction'] == 1 ? "全部" : "";
+                                var status = data[k]['status'] == 1 ? "点击禁用" : "点击激活";
+                                html += '<tr><td>' + sort + '</td><td>' +
+                                    username + '</td><td>' +
+                                    jurisdiction + '</td><td><button type="button" data-status = "' + data[k]["status"] + '" data-id = "' + data[k]["id"] + '" class="btn " id="stopuser">' + status + '</button>' +
+                                    '</td><td><button type="button" data-id = "' + data[k]["id"] + '" class="btn btn-danger" id="modifypassword">修改密码</button></td></tr>'
 
+                            }
+                        } else {
+                                var sort = k;
+                                sort += 1;
+                                var username = data[k]['username'];
+                                var jurisdiction = data[k]['jurisdiction'] == 1 ? "全部" : "";
+                                var status = data[k]['status'] == 1 ? "点击禁用" : "点击激活";
+                                html += '<tr><td>' + sort + '</td><td>' + username + '</td><td>' + jurisdiction + '</td><td>无法查看</td><td>无法操作</td><tr>'
+                                
                         }
                     })
                     $(".systemContent").html(html);
