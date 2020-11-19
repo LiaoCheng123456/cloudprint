@@ -16,6 +16,10 @@ $(function () {
 
         list.username = username;
         list.password = password;
+        var params = {
+            username: 'admin',
+            password: 'siwei123',
+        }
         $.ajax({
             //请求方式
             type: "POST",
@@ -24,7 +28,7 @@ $(function () {
             //请求地址
             url: host + "/user/adminlogin",
             //数据，json字符串
-            data: JSON.stringify(list),
+            data: JSON.stringify(params),
             //请求成功
             success: function (result) {
                 if (result['code'] == 200) {
