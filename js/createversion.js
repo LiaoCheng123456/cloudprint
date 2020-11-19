@@ -92,4 +92,18 @@ $(function () {
 
         });
     })
+
+    // 选中ios的时候,隐藏文件上传并且隐藏设备端
+    $("#layios").click(function(){
+        // 选中Android的时候显示文件上传
+        $("#fileupload").hide()
+        $("#layshebei").hide()
+     })
+     
+
+    $("#layandroid").click(function(){
+       // 选中Android的时候显示文件上传
+        $("#fileupload").show()
+        $("#layshebei").show()
+    })
 })
