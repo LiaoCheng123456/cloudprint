@@ -41,20 +41,28 @@
 
       <label class="layui-form-label">请选择平台</label>
       <div class="layui-input-block">
-        <input type="radio" name="r" value="1" title="安卓" checked>
-        <input type="radio" name="r" value="2" title="IOS">
+        <div id="layandroid" style="display: inline-block;">
+          <input type="radio" name="r" value="1" title="安卓" checked>
+        </div>
+        <div id="layios" style="display: inline-block;">
+          <input type="radio" name="r" value="2" title="IOS">
+        </div>
       </div>
 
-      <div class="layui-form-item"></div>
+      <div class="layui-form-item">
       <label class="layui-form-label">请选择客户端</label>
       <div class="layui-input-block">
-        <input type="radio" name="d" value="1" title="设备端" checked>
-        <input type="radio" name="d" value="2" title="家长端">
+        <div id="layshebei" style="display: inline-block;">
+          <input type="radio" name="d" value="1" title="设备端" checked>
+        </div>
+        <div id="layjiazhang" style="display: inline-block;">
+          <input type="radio" name="d" value="2" title="家长端">
+        </div>
       </div>
     </div>
 
-    <div class="layui-form-item"></div>
-    <label class="layui-form-label">请选择客户端</label>
+    <div class="layui-form-item" id="fileupload">
+    <label class="layui-form-label">选择上传文件</label>
     <button type="button" class="layui-btn" id="test1">
       <i class="layui-icon">&#xe67c;</i>上传文件
     </button>
