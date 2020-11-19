@@ -74,19 +74,21 @@ $(function(){
             });
     }
 
-    var targetType = 1;
+    var targetType = 2;
     var type = 1;
 
     $("#jiazhang").click(function(){
         targetType = 2;
         getversionlist(targetType, type)
         event.preventDefault();
+        $("#ios").show()
     })
 
     $("#shebei").click(function(){
         targetType = 1;
         getversionlist(targetType, type)
         event.preventDefault();
+        $("#ios").hide()
     })
 
 
