@@ -1,0 +1,51 @@
+.addbanner {
+  display: flex;
+  justify-content: space-between;
+  align-self: start;
+}
+.previewBanner {
+  flex: 1;
+  /* background: red; */
+  /* height: 600px; */
+  border-left: 1px dashed #ccc;
+}
+.addbanner .formBox {
+  flex: 1;
+
+  /* background: blue; */
+}
+.bannerTitle {
+  width: 80%;
+  margin: auto;
+  margin-top: 100px;
+  text-align: left;
+  margin-bottom: 20px;
+}
+.addBannerForm {
+  width: 80%;
+  margin: auto;
+  /* margin-top: 100px; */
+}
+.photoList {
+  display: flex;
+  justify-content: flex-start;
+}
+.uploadBtnBox {
+  height: 120px;
+  width: 120px;
+  border: 1px dashed #ccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+}
+
+#bannerContent {
+  margin: auto;
+  margin-top: 10px;
+  width: 375px;
+  height: 600px;
+  overflow-y: scroll;
+  border: 1px solid #e8e8e8;
+  border-radius: 4px;
+}
